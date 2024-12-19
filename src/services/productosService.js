@@ -3,6 +3,7 @@ const sequelize = require('../config/database.js');
 
 class ProductosService {
 
+    //insertar productos
     static async insertProductos(data) {
         const query = `EXEC p_insertarProductos
             @CategoriaProductos_idCategoriaProductos = :CategoriaProductos_idCategoriaProductos,
@@ -32,6 +33,7 @@ class ProductosService {
 
     }
 
+    //desactivar productos
     static async deleteProductos(id) {
         const query = `EXEC p_eliminarProductos @idProducto = :idProducto`;
         return await sequelize.query(query, {
@@ -41,6 +43,7 @@ class ProductosService {
 
     }
 
+    //actualizar productos
     static async updateProductos(data) {
         const query =
             `EXEC p_editarProductos
@@ -78,6 +81,15 @@ class ProductosService {
         return await sequelize.query(query, {
             type: sequelize.QueryTypes.SELECT,
         });
+    }
+
+    static async obtenerProductoId(id) {
+        const query = 'EXEC p_ObtenerProductoPorId @idProducto = :idProducto';
+        return await sequelize.query(query, {
+            replacements: { idProducto: id },
+            type: sequelize.QueryTypes.SELECT,
+        });
+
     }
 
 }

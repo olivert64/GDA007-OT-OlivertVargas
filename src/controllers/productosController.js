@@ -1,4 +1,4 @@
-const ProductosService = require('../services/productos.service.js');
+const ProductosService = require('../services/productosService.js');
 
 class ProductosController {
 
@@ -78,6 +78,24 @@ class ProductosController {
         } catch (error) {
             console.log(error);
             return res.status(500).json({ error: 'Error al consultar datos' });
+        }
+    }
+
+    static async getById(req, res) {
+        try {
+            const idProducto = req.params.idProducto;
+
+            if (!idProducto) {
+                return res.status(400).json({ error: 'El ID del producto es obligatorio.' });
+            }
+
+            const data = await ProductosService.obtenerProductoId(idProducto);
+
+            return res.status(200).json(data);
+
+        } catch (error) {
+            console.error('Error al obtener el producto:', error);
+            return res.status(500).json({ error: 'Error al obtener el producto.' });
         }
     }
 
