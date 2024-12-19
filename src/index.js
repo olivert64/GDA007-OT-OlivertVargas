@@ -18,7 +18,7 @@ sequelize.authenticate()
 
 
 //Rutas
-//app.get('/', (req, res) => {res.send('API funcionando')});
+app.get('/', (req, res) => {res.send('API funcionando')});
 app.use('/api/productos', productosRoutes);
 app.use('/api/categoriaProductos', categoriaProductosRoutes);
 app.use('/api/estados', estadosRoutes);
