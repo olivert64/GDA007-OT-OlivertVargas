@@ -5,6 +5,8 @@ const productosRoutes = require('./routes/productosRoutes.js');
 const categoriaProductosRoutes = require('./routes/categoriaProductosRoutes.js');
 const estadosRoutes = require('./routes/estadosRoutes.js');
 const ordenRoutes = require('./routes/ordenRoutes.js');
+const usuariosRoutes = require('./routes/usuariosRoutes.js');
+const clientesRoutes = require('./routes/clientesRoutes.js');
 
 
 const app = express();
@@ -23,6 +25,8 @@ app.use('/api/productos', productosRoutes);
 app.use('/api/categoriaProductos', categoriaProductosRoutes);
 app.use('/api/estados', estadosRoutes);
 app.use('/api/orden', ordenRoutes);
+app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/clientes', clientesRoutes);
 
 
 

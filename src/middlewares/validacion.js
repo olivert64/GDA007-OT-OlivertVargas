@@ -1,0 +1,18 @@
+const { validationResult } = require('express-validator');
+
+// can be reused by many routes
+const validarCampos = validations => {
+    return async (req, res, next) => {
+        // sequential processing, stops running validations chain if one fails.
+        for (const validation of validations) {
+            const result = await validation.run(req);
+            if (!result.isEmpty()) {
+                return res.status(400).json({ errors: result.array() });
+            }
+        }
+        next();
+    };
+};
+
+
+module.exports = validarCampos;

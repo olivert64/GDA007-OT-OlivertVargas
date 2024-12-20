@@ -8,7 +8,7 @@ class OrdenController {
             const data = req.body;
 
             const camposRequeridos = [
-                'usuarios_idusuarios',
+                'usuarios_idUsuarios',
                 'detalles',
             ];
 

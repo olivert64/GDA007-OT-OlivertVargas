@@ -7,23 +7,6 @@ class ProductosController {
 
             const data = req.body;
 
-            const camposRequeridos = [
-                'CategoriaProductos_idCategoriaProductos',
-                'usuarios_idUsuarios',
-                'nombre',
-                'marca',
-                'codigo',
-                'cantidad',
-                'estados_idEstados',
-                'precio',
-            ];
-
-            for (const campo of camposRequeridos) {
-                if (!data[campo]) {
-                    return res.status(400).json({ error: `El campo ${field} es obligatorio.` });
-                }
-            }
-
             await ProductosService.insertProductos(data);
 
             return res.status(201).json({ message: 'Producto creado Correctamente.' });
@@ -57,10 +40,6 @@ class ProductosController {
         try {
             const data = req.body;
 
-            if (!data.idProducto) {
-                return res.status(400).json({ error: 'El Id del producto es obligatorio...' });
-            }
-
             await ProductosService.updateProductos(data);
 
             return res.status(200).json({ message: 'El Producto fue actualizado correctamente.' });
@@ -84,10 +63,6 @@ class ProductosController {
     static async getById(req, res) {
         try {
             const idProducto = req.params.idProducto;
-
-            if (!idProducto) {
-                return res.status(400).json({ error: 'El ID del producto es obligatorio.' });
-            }
 
             const data = await ProductosService.obtenerProductoId(idProducto);
 

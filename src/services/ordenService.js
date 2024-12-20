@@ -4,12 +4,12 @@ class OrdenService {
 
     static async insertOrden(data) {
         const query = `EXEC p_CrearOrdenConDetalle
-            @usuarios_idusuarios = :usuarios_idusuarios,
+            @usuarios_idUsuarios = :usuarios_idUsuarios,
             @detalles = :detalles;`;
 
         return await sequelize.query(query, {
             replacements: {
-                usuarios_idusuarios: data.usuarios_idusuarios,
+                usuarios_idUsuarios: data.usuarios_idUsuarios,
                 detalles: JSON.stringify(data.detalles),
             },
             type: sequelize.QueryTypes.INSERT
