@@ -13,8 +13,7 @@ class ClientesController {
                 'nombreComercial',
                 'direccionEntrega',
                 'telefono',
-                'email',
-                'estados_idEstados'
+                'email'
             ];
 
             for (const campo of camposRequeridos) {
@@ -33,6 +32,37 @@ class ClientesController {
         }
     }
 
+    static async update(req, res) {
+        try {
+
+            const data = req.body;
+
+            const camposRequeridos = [
+                'idCliente',
+                'razonSocial',
+                'nombreComercial',
+                'direccionEntrega',
+                'telefono',
+                'email',
+                'estados_idEstados'
+            ];
+
+            for (const campo of camposRequeridos) {
+                if (!data[campo]) {
+                    return res.status(400).json({ error: `El campo ${campo} es obligatorio.` });
+                }
+            }
+
+            await ClientesService.updateCliente(data);
+
+            return res.status(200).json({ message: 'Cliente actualizado Correctamente.' });
+
+        } catch (error) {
+            console.error('Error al actualizar el cliente:', error);
+            return res.status(500).json({ error: 'Error al actualizar el cliente.' });
+        }
+    }
+
     static async get(req, res) {
         try {
             const clientes = await ClientesService.obtenerClientes();
@@ -40,6 +70,22 @@ class ClientesController {
         } catch (error) {
             console.error('Error al obtener los clientes:', error);
             return res.status(500).json({ error: 'Error al obtener los clientes.' });
+        }
+    }
+
+    static async delete(req, res) { 
+        try {
+            const id = req.params.id;
+
+            if (!id) {
+                return res.status(400).json({ error: 'El ID del cliente es obligatorio.' });
+            }
+
+            await ClientesService.deleteCliente(id);
+            return res.status(200).json({ message: 'Cliente eliminado Correctamente.' });
+        } catch (error) {
+            console.error('Error al eliminar el cliente:', error);
+            return res.status(500).json({ error: 'Error al eliminar el cliente.' });
         }
     }
 

@@ -15,10 +15,7 @@ const createCliente = [
     body('email')
         .notEmpty().withMessage('El correo no puede estar vacio')
         .isEmail().withMessage('El correo debe ser un email')
-        .isString().withMessage('El correo debe ser un string'),
-    body('estados_idEstados')
-        .notEmpty().withMessage('El id de estado no puede estar vacio')
-        .isInt().withMessage('El id de estado debe ser un numero'),
+        .isString().withMessage('El correo debe ser un string')
 ];
 
 module.exports = {

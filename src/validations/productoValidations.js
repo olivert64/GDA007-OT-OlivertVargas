@@ -19,9 +19,6 @@ const createProducto = [
     body('cantidad')
         .notEmpty().withMessage('La cantidad no puede estar vacia')
         .isInt().withMessage('La cantidad debe ser un numero'),
-    body('estados_idEstados')
-        .notEmpty().withMessage('El id estado no puede estar vacio')
-        .isInt().withMessage('El id estado debe ser un numero'),
     body('precio')
         .notEmpty().withMessage('El precio no puede estar vacio')
         .isFloat().withMessage('El precio debe ser un numero'),
