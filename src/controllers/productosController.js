@@ -21,10 +21,6 @@ class ProductosController {
         try {
             const idProducto = req.params.idProducto;
 
-            if (!idProducto) {
-                return res.status(400).json({ error: 'El ID del producto es obligatorio.' });
-            }
-
             await ProductosService.deleteProductos(idProducto);
 
             return res.status(200).json({ message: 'Producto desactivado correctamente' });

@@ -8,19 +8,8 @@ class ProductosController {
 
             const data = req.body;
 
-            const camposRequeridos = [
-                'usuario_idUsuarios',
-                'nombre',
-                'estados_idEstados',
-            ];
-
-            for (const campo of camposRequeridos) {
-                if (!data[campo]) {
-                    return res.status(400).json({ error: `El campo ${campo} es obligatorio.` });
-                }
-            }
-
             await categoriaProductosService.insertCategoriaProductos(data);
+
             return res.status(201).json({ message: 'Categoria producto creado Correctamente.' });
 
         } catch (error) {
@@ -34,10 +23,6 @@ class ProductosController {
         try {
             const data = req.body;
 
-            if (!data.idCategoriaProducto) {
-                return res.status(400).json({ error: 'El ID de la categoria producto es obligatorio.' });
-            }
-
             await categoriaProductosService.updateCategoriaProductos(data);
 
             return res.status(200).json({ message: 'Categoria producto actualizado correctamente' });
@@ -50,11 +35,7 @@ class ProductosController {
 
     static async delete(req, res) {
         try {
-            const idCategoriaProducto = req.params.idCategoriaProducto;
-
-            if (!idCategoriaProducto) {
-                return res.status(400).json({ error: 'El ID de la categoria producto es obligatorio.' });
-            }
+            const idCategoriaProducto = req.params.id;
 
             await categoriaProductosService.deleteCategoriaProductos(idCategoriaProducto);
 
@@ -78,11 +59,7 @@ class ProductosController {
 
     static async getById(req, res) {
         try {
-            const idCategoriaProducto = req.params.idCategoriaProducto;
-
-            if (!idCategoriaProducto) {
-                return res.status(400).json({ error: 'El ID de la categoria producto es obligatorio.' });
-            }
+            const idCategoriaProducto = req.params.id;
 
             const data = await categoriaProductosService.getCategoriaProductosById(idCategoriaProducto);
 

@@ -24,7 +24,7 @@ class ClientesService {
     }
 
     static async updateCliente(data) {
-        const query = `EXEC p_actualizarClientes 
+        const query = `EXEC p_editarClientes 
             @idCliente = :idCliente,
             @razonSocial = :razonSocial,
             @nombreComercial = :nombreComercial,
@@ -63,7 +63,7 @@ class ClientesService {
     }
 
     static async obtenerClienteId(id) {
-        const query = 'EXEC p_ObtenerClientePorId @idCliente = :idCliente';
+        const query = 'EXEC p_obtenerClientePorId @idCliente = :idCliente';
         return await sequelize.query(query, {
             replacements: { idCliente: id },
             type: sequelize.QueryTypes.SELECT,
