@@ -14,4 +14,5 @@ router.get('/get', UsuariosController.get);
 router.get('/get/:id',  validarCampos(usuariosValidation.getUsuariosId), UsuariosController.getById);
 
 
+
 module.exports = router;

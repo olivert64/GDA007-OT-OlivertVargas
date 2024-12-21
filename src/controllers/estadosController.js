@@ -1,4 +1,5 @@
 const estadosService = require('../services/estadosService.js');
+const response = require('../utils/response.js');
 
 class estadosController {
 
@@ -43,10 +44,9 @@ class estadosController {
     static async getById(req, res) {
         try {
             const idEstado = req.params.idEstado;
-
             const data = await estadosService.getbyId(idEstado);
-
-            return res.status(200).json(data);
+            response.success(res, 'Estado encontrado',data, 200);
+            // return res.status(200).json(data);
 
         } catch (error) {
             console.error('Error al obtener el estado:', error);

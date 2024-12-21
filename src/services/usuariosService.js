@@ -88,6 +88,15 @@ class UsuariosService {
         });
     }
 
+    static async getUsuarioByEmail(data) {
+        const query = `EXEC p_obtenerUsuarioPorCorreoElectronico @correoElectronico = :correoElectronico;`;
+        const result = await sequelize.query(query, {
+            replacements: { correoElectronico: data },
+            type: sequelize.QueryTypes.SELECT
+        });
+        return result[0];
+    }
+
 }
 
 module.exports = UsuariosService;
