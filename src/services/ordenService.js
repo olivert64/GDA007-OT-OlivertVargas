@@ -42,6 +42,13 @@ class OrdenService {
         });
     }
 
+    static async getOrdenes() {
+        const query = `EXEC p_obtenerOrdenes;`;
+        return await sequelize.query(query, {
+            type: sequelize.QueryTypes.SELECT
+        });
+    }
+
 }
 
 module.exports = OrdenService;
