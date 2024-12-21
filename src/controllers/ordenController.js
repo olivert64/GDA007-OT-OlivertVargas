@@ -1,4 +1,5 @@
 const OrdenService = require('../services/ordenService');
+const response = require('../utils/response.js');
 
 class OrdenController {
     
@@ -7,9 +8,9 @@ class OrdenController {
 
             const data = req.body;
 
-            await OrdenService.insertOrden(data);
-
-            return res.status(201).json({ message: 'Orden creada Correctamente.' });
+            const result = await OrdenService.insertOrden(data);
+            response.success(res, 'Orden creada Correctamente', result, 201);
+            //return res.status(201).json({ message: 'Orden creada Correctamente.' });
 
         } catch (error) {
             console.error('Error al crear la orden:', error);
@@ -21,9 +22,9 @@ class OrdenController {
         try {
             const data = req.body;
 
-            await OrdenService.updateOrden(data);
-
-            return res.status(200).json({ message: 'Orden actualizada correctamente' });
+            const result = await OrdenService.updateOrden(data);
+            response.success(res, 'Orden actualizada Correctamente', result, 200);
+            //return res.status(200).json({ message: 'Orden actualizada correctamente' });
 
         } catch (error) {
             console.error('Error al actualizar la orden:', error);
@@ -35,6 +36,7 @@ class OrdenController {
     static async getOrdenes(req, res) {
         try {
             const ordenes = await OrdenService.getOrdenes();
+            response.success(res, 'Ordenes encontradas', ordenes, 200);
             return res.status(200).json(ordenes);
         } catch (error) {
             console.error('Error al obtener las ordenes:', error);

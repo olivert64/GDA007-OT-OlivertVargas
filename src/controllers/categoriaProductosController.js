@@ -1,5 +1,6 @@
 const { Model } = require('sequelize');
 const categoriaProductosService = require('../services/categoriaProductosService.js');
+const response = require('../utils/response.js');
 
 class ProductosController {
 
@@ -8,9 +9,10 @@ class ProductosController {
 
             const data = req.body;
 
-            await categoriaProductosService.insertCategoriaProductos(data);
-
-            return res.status(201).json({ message: 'Categoria producto creado Correctamente.' });
+            const result = await categoriaProductosService.insertCategoriaProductos(data);
+            
+            response.success(res, 'Categoria producto creado Correctamente', result, 201);
+            //return res.status(201).json({ message: 'Categoria producto creado Correctamente.' });
 
         } catch (error) {
             console.log(error);
@@ -23,9 +25,10 @@ class ProductosController {
         try {
             const data = req.body;
 
-            await categoriaProductosService.updateCategoriaProductos(data);
+            const result = await categoriaProductosService.updateCategoriaProductos(data);
+            response.success(res, 'Categoria producto actualizado correctamente', result, 200);
 
-            return res.status(200).json({ message: 'Categoria producto actualizado correctamente' });
+            //return res.status(200).json({ message: 'Categoria producto actualizado correctamente' });
 
         } catch (error) {
             console.log(error);
@@ -37,9 +40,11 @@ class ProductosController {
         try {
             const idCategoriaProducto = req.params.id;
 
-            await categoriaProductosService.deleteCategoriaProductos(idCategoriaProducto);
+            const result = await categoriaProductosService.deleteCategoriaProductos(idCategoriaProducto);
 
-            return res.status(200).json({ message: 'Categoria producto desactivado correctamente' });
+            response.success(res, 'Categoria producto desactivado correctamente', result, 200);
+
+            //return res.status(200).json({ message: 'Categoria producto desactivado correctamente' });
 
         } catch (error) {
             console.log(error);
@@ -50,7 +55,8 @@ class ProductosController {
     static async get(req, res) {
         try {
             const data = await categoriaProductosService.getCategoriaProductos();
-            return res.status(200).json(data);
+            response.success(res, 'Categoria producto encontrada', data, 200);
+            //return res.status(200).json(data);
         } catch (error) {
             console.log(error);
             return res.status(500).json({ error: 'Error al consultar datos' });
@@ -62,8 +68,8 @@ class ProductosController {
             const idCategoriaProducto = req.params.id;
 
             const data = await categoriaProductosService.getCategoriaProductosById(idCategoriaProducto);
-
-            return res.status(200).json(data);
+            response.success(res, 'Categoria producto encontrada', data, 200);
+            //return res.status(200).json(data);
 
         } catch (error) {
             console.log(error);

@@ -1,4 +1,5 @@
 const ProductosService = require('../services/productosService.js');
+const response = require('../utils/response.js');
 
 class ProductosController {
 
@@ -7,9 +8,11 @@ class ProductosController {
 
             const data = req.body;
 
-            await ProductosService.insertProductos(data);
+            const result = await ProductosService.insertProductos(data);
 
-            return res.status(201).json({ message: 'Producto creado Correctamente.' });
+            response.success(res, 'Producto creado Correctamente', result, 201);
+
+            //return res.status(201).json({ message: 'Producto creado Correctamente.' });
 
         } catch (error) {
             console.error('Error al crear el producto:', error);
@@ -21,9 +24,9 @@ class ProductosController {
         try {
             const idProducto = req.params.idProducto;
 
-            await ProductosService.deleteProductos(idProducto);
-
-            return res.status(200).json({ message: 'Producto desactivado correctamente' });
+            const result = await ProductosService.deleteProductos(idProducto);
+            response.success(res, 'Producto eliminado Correctamente', result, 200);
+            //return res.status(200).json({ message: 'Producto desactivado correctamente' });
 
         } catch (error) {
             console.error('Error al desactivar el producto:', error);
@@ -36,9 +39,9 @@ class ProductosController {
         try {
             const data = req.body;
 
-            await ProductosService.updateProductos(data);
-
-            return res.status(200).json({ message: 'El Producto fue actualizado correctamente.' });
+            const result = await ProductosService.updateProductos(data);
+            response.success(res, 'Producto actualizado Correctamente', result, 200);
+            //return res.status(200).json({ message: 'El Producto fue actualizado correctamente.' });
 
         } catch (error) {
             console.error('Error al actualizar el producto: ', error);
@@ -49,7 +52,10 @@ class ProductosController {
     static async get(req, res) {
         try {
             const data = await ProductosService.obtenerProductos();
-            return res.status(200).json(data);
+            response.success(res, 'Productos encontrados', data, 200);
+
+            
+            //return res.status(200).json(data);
         } catch (error) {
             console.log(error);
             return res.status(500).json({ error: 'Error al consultar datos' });
@@ -61,8 +67,8 @@ class ProductosController {
             const idProducto = req.params.idProducto;
 
             const data = await ProductosService.obtenerProductoId(idProducto);
-
-            return res.status(200).json(data);
+            response.success(res, 'Producto encontrado', data, 200);
+            //return res.status(200).json(data);
 
         } catch (error) {
             console.error('Error al obtener el producto:', error);

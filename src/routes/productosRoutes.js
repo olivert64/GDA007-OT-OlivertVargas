@@ -12,7 +12,7 @@ router.post('/insert', validarCampos(productosValidation.createProducto),
 router.put('/update', validarCampos(productosValidation.updateProducto),
     ProductosController.update);
 
-router.delete('/delete/:idProducto', validarCampos(productosValidation.deleteProducto),
+router.put('/delete/:idProducto', validarCampos(productosValidation.deleteProducto),
     ProductosController.delete);
 
 router.get('/get', ProductosController.get);

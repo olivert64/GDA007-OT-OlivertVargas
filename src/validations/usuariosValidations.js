@@ -72,14 +72,12 @@ const deleteUsuarios = [
     param('id')
         .notEmpty().withMessage('El id de usuario no puede estar vacio')
         .isInt().withMessage('El id de usuario debe ser un numero')
-        .not().equals('1').withMessage('El id no puede ser 1'),
 ];
 
 const getUsuariosId = [
     param('id')
         .notEmpty().withMessage('El id de usuario no puede estar vacio')
         .isInt().withMessage('El id de usuario debe ser un numero')
-        .not().equals('1').withMessage('El id no puede ser 1'),
 ];
 
 module.exports = { 

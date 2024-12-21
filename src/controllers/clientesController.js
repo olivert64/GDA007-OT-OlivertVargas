@@ -1,4 +1,5 @@
 const ClientesService = require('../services/clientesService.js');
+const response = require('../utils/response.js');
 
 
 class ClientesController {
@@ -8,9 +9,11 @@ class ClientesController {
 
             const data = req.body;
 
-            await ClientesService.insertCliente(data);
+            const result = await ClientesService.insertCliente(data);
 
-            return res.status(201).json({ message: 'Cliente creado Correctamente.' });
+            response.success(res, 'Cliente creado Correctamente', result, 201);
+
+            //return res.status(201).json({ message: 'Cliente creado Correctamente.' });
 
         } catch (error) {
             console.error('Error al crear el cliente:', error);
@@ -23,10 +26,11 @@ class ClientesController {
 
             const data = req.body;
 
+            const result = await ClientesService.updateCliente(data);
 
-            await ClientesService.updateCliente(data);
+            response.success(res, 'Cliente actualizado Correctamente', result, 200);
 
-            return res.status(200).json({ message: 'Cliente actualizado Correctamente.' });
+            //return res.status(200).json({ message: 'Cliente actualizado Correctamente.' });
 
         } catch (error) {
             console.error('Error al actualizar el cliente:', error);
@@ -37,7 +41,8 @@ class ClientesController {
     static async get(req, res) {
         try {
             const clientes = await ClientesService.obtenerClientes();
-            return res.status(200).json(clientes);
+            response.success(res, 'Clientes encontrados', clientes, 200);
+            //return res.status(200).json(clientes);
         } catch (error) {
             console.error('Error al obtener los clientes:', error);
             return res.status(500).json({ error: 'Error al obtener los clientes.' });
@@ -48,8 +53,9 @@ class ClientesController {
         try {
             const id = req.params.id;
 
-            await ClientesService.deleteCliente(id);
-            return res.status(200).json({ message: 'Cliente eliminado Correctamente.' });
+            const result = await ClientesService.deleteCliente(id);
+            response.success(res, 'Cliente eliminado Correctamente', result, 200);
+            //return res.status(200).json({ message: 'Cliente eliminado Correctamente.' });
 
         } catch (error) {
             console.error('Error al eliminar el cliente:', error);
@@ -62,8 +68,8 @@ class ClientesController {
             const id = req.params.id;
 
             const cliente = await ClientesService.obtenerClienteId(id);
-
-            return res.status(200).json(cliente);
+            response.success(res, 'Cliente encontrado', cliente, 200);
+            //return res.status(200).json(cliente);
             
         } catch (error) {
             console.error('Error al obtener el cliente:', error);
