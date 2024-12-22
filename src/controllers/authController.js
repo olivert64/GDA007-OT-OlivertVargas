@@ -11,11 +11,12 @@ class authController {
         try {
     
             const user = await UsuariosService.getUsuarioByEmail(correoElectronico);
+
             if (!user) {
                 console.log('Usuario no encontrado');
                 return res.status(400).json({ error: 'Usuario no encontrado' });
             }
-    
+
             const passwordValida = await bcrypt.compare(passwrd, user.passwrd);
             if (!passwordValida) {
                 return res.status(400).json({ error: 'Invalid password' });

@@ -10,7 +10,7 @@ const clientesRoutes = require('./routes/clientesRoutes.js');
 
 const authRoutes = require('./routes/authRoutes.js');
 const authenticateToken = require('./middlewares/auth.js');
-const initAdmin = require('./utils/initAdmin.js');
+
 
 
 const app = express();
@@ -21,7 +21,6 @@ app.use(express.json());
 sequelize.authenticate()
     .then(() => {
         console.log('Conexión exitosa con la base de datos');
-        initAdmin;
     })
     .catch(error => console.error('Error de conexión:', error));
 
@@ -33,7 +32,7 @@ app.use('/api/productos', authenticateToken, productosRoutes);
 app.use('/api/categoriaProductos', authenticateToken, categoriaProductosRoutes);
 app.use('/api/estados', authenticateToken, estadosRoutes);
 app.use('/api/orden', authenticateToken, ordenRoutes);
-app.use('/api/usuarios', authenticateToken,usuariosRoutes);
+app.use('/api/usuarios', authenticateToken, usuariosRoutes);
 app.use('/api/clientes', authenticateToken, clientesRoutes);
 
 

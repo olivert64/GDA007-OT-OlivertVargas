@@ -291,8 +291,8 @@ GO
 EXEC p_insertarUsuarios
     @rol_idRol = 1, 
     @correoElectronico = 'admin1@empresa.com',
-    @nombreCompleto = 'Juan P�rez',
-    @passwrd = 'admin123',
+    @nombreCompleto = 'Juan Perez',
+    @passwrd = '$2b$10$AJ7W76S6RrLSjxX8jEGmvOc1F7ZEzKzGRcvSyn.hvXXkakgWStQ7G',
 	@direccion = 'avenida 2',
     @telefono = '123456789',
     @fechaNacimiento = '1985-06-15',
@@ -873,19 +873,6 @@ BEGIN
 END
 GO
 
-EXEC p_editarUsuarios
-	@idUsuario = 5,
-	@rol_idRol = 2,
-	@estados_idEstados = 1,
-	@correoElectronico = 'operadorqq2@empresa.com',
-	@nombreCompleto = 'Andrea Soto',
-	@passwrd = 'op789',
-	@direccion = 'Avenida 222',
-	@telefono = '11111111',
-	@fechaNacimiento = '1992-11-18',
-	@Clientes_idClientes= 4;
-GO
-	
 
 -- Modificar Categoria Productos
 CREATE PROCEDURE p_editarCategoriaProductos
@@ -1025,8 +1012,8 @@ BEGIN
 END
 GO
 
-EXEC p_eliminarUsuarios @idUsuario = 4;
-GO
+--EXEC p_eliminarUsuarios @idUsuario = 4;
+--GO
 --select * from Usuarios;
 
 --Eliminar CategoriaP Productos
@@ -1398,7 +1385,6 @@ BEGIN
 		estados_idEstados,
 		correoElectronico,
 		nombreCompleto,
-		passwrd,
 		direccion,
 		telefono,
 		fechaNacimiento,
@@ -1422,7 +1408,6 @@ BEGIN
 		estados_idEstados,
 		correoElectronico,
 		nombreCompleto,
-		passwrd,
 		direccion,
 		telefono,
 		fechaNacimiento,

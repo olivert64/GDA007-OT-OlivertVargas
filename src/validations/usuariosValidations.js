@@ -1,10 +1,16 @@
-const {body, param} = require('express-validator'); 
+const { body, param } = require('express-validator');
+const roles = require('../utils/constantes/roles.js');
 
 const createUsuarios = [
     body('rol_idRol')
         .notEmpty().withMessage('El id de rol no puede estar vacio')
         .isInt().withMessage('El id de rol debe ser un numero')
-        .equals('2').withMessage('El rol debe ser Operador corresponde al numero 2'),
+        .custom(value => {
+            if (value !== roles.OPERADOR) {
+                throw new Error('El rol debe ser Operador corresponde al numero 2');
+            }
+            return true;
+        }),
     body('correoElectronico')
         .notEmpty().withMessage('El correo no puede estar vacio')
         .isEmail().withMessage('El correo debe ser un email')
@@ -24,11 +30,11 @@ const createUsuarios = [
         .isString().withMessage('El telefono debe ser un string'),
     body('fechaNacimiento')
         .notEmpty().withMessage('La fecha de nacimiento no puede estar vacia')
-        .isDate({ format: 'YYYY-MM-DD'} ).withMessage('La fecha de nacimiento debe ser en formato YYYY-MM-DD'),
+        .isDate({ format: 'YYYY-MM-DD' }).withMessage('La fecha de nacimiento debe ser en formato YYYY-MM-DD'),
     body('Cliente_idCliente')
         .optional()
         .isInt().withMessage('El id de cliente debe ser un numero'),
-    
+
 ];
 
 const updateUsuarios = [
@@ -38,7 +44,12 @@ const updateUsuarios = [
     body('rol_idRol')
         .notEmpty().withMessage('El id de rol no puede estar vacio')
         .isInt().withMessage('El id de rol debe ser un numero')
-        .equals('2').withMessage('El rol debe ser Operador corresponde al numero 2'),
+        .custom(value => {
+            if (value !== roles.OPERADOR) {
+                throw new Error('El rol debe ser Operador corresponde al numero 2');
+            }
+            return true;
+        }),
     body('estados_idEstados')
         .notEmpty().withMessage('El id de estado no puede estar vacio')
         .isInt().withMessage('El id de estado debe ser un numero'),
@@ -61,11 +72,11 @@ const updateUsuarios = [
         .isString().withMessage('El telefono debe ser un string'),
     body('fechaNacimiento')
         .notEmpty().withMessage('La fecha de nacimiento no puede estar vacia')
-        .isDate({ format: 'YYYY-MM-DD'} ).withMessage('La fecha de nacimiento debe ser en formato YYYY-MM-DD'),
+        .isDate({ format: 'YYYY-MM-DD' }).withMessage('La fecha de nacimiento debe ser en formato YYYY-MM-DD'),
     body('Cliente_idCliente')
         .optional()
         .isInt().withMessage('El id de cliente debe ser un numero'),
-        
+
 ];
 
 const deleteUsuarios = [
@@ -80,7 +91,7 @@ const getUsuariosId = [
         .isInt().withMessage('El id de usuario debe ser un numero')
 ];
 
-module.exports = { 
+module.exports = {
     createUsuarios,
     updateUsuarios,
     deleteUsuarios,
