@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "c16a8bd5-3129-4986-935f-af61bff89dab",
+		"name": "Clientes",
+		"description": "Los endpoints de Clientes permiten crear, actualizar, eliminar y obtener información sobre los clientes registrados.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9272212"
+	},
+	"item": [
+		{
+			"name": "ObtenerClientes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/clientes/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"clientes",
+						"get"
+					]
+				},
+				"description": "Enpoint que nos permite listar todos los usuarios."
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerPorId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/clientes/get/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"clientes",
+						"get",
+						"2"
+					]
+				},
+				"description": "Endpoint que nos permite obtener un usuario ingresando como parametro su id."
+			},
+			"response": []
+		},
+		{
+			"name": "CrearCliente",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"razonSocial\": \"pruebas S.A.\",\r\n    \"nombreComercial\": \"Prueba\",\r\n    \"direccionEntrega\": \"Avenida la pruebaa\",\r\n    \"telefono\": \"666666666\",\r\n    \"email\": \"pruebaaaaaa@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/clientes/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"clientes",
+						"insert"
+					]
+				},
+				"description": "Endpoint que nos permite crear un cliente con los parametros correspondientes."
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarCliente",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCliente\": 20,\r\n    \"razonSocial\": \"pruebas S.A.\",\r\n    \"nombreComercial\": \"Pruebaaa\",\r\n    \"direccionEntrega\": \"Avenida la pruebaa\",\r\n    \"telefono\": \"666666666\",\r\n    \"email\": \"pruebaaaaaa@gmail.com\",\r\n    \"estados_idEstados\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/clientes/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"clientes",
+						"update"
+					]
+				},
+				"description": "Endpoint que nos permite actualizar un cliente con los parametros correspondientes."
+			},
+			"response": []
+		},
+		{
+			"name": "DesactivarCliente",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/clientes/delete/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"clientes",
+						"delete",
+						"20"
+					]
+				},
+				"description": "Endpoint que nos permite desactivar un cliente mandando como parametro su id."
+			},
+			"response": []
+		}
+	]
+}

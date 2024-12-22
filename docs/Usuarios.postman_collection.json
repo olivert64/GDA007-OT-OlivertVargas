@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "587b579a-b7e4-4902-ab7b-ccc7af9b7f76",
+		"name": "Usuarios",
+		"description": "Los endpoints de usuarios permiten crear, actualizar, eliminar y obtener información sobre los usuarios registrados.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9272212"
+	},
+	"item": [
+		{
+			"name": "ObtenerUsuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwOTY0MywiZXhwIjoxNzM0ODk2MDQzfQ.wiczL75TFJp0TxOS2GCJ8sTBEgb1rdayN21Kj7-Rrqw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/usuarios/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"usuarios",
+						"get"
+					]
+				},
+				"description": "Este endpoint permite obtener todos los usuarios."
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerPorId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwOTY0MywiZXhwIjoxNzM0ODk2MDQzfQ.wiczL75TFJp0TxOS2GCJ8sTBEgb1rdayN21Kj7-Rrqw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/usuarios/get/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"usuarios",
+						"get",
+						"1"
+					]
+				},
+				"description": "Este endpoint permite obtener un usuario mandando como parametro su id."
+			},
+			"response": []
+		},
+		{
+			"name": "CrearUsuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwOTY0MywiZXhwIjoxNzM0ODk2MDQzfQ.wiczL75TFJp0TxOS2GCJ8sTBEgb1rdayN21Kj7-Rrqw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rol_idRol\": 2,\r\n    \"correoElectronico\": \"Prueba66sss6@empresa.com\",\r\n    \"nombreCompleto\": \"Prueba662 prueba662\",\r\n    \"passwrd\": \"prueba12334\",\r\n    \"direccion\": \"avenida 1\",\r\n    \"telefono\": \"123456789\",\r\n    \"fechaNacimiento\": \"1985-06-14\",\r\n    \"Clientes_idClientes\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/usuarios/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"usuarios",
+						"insert"
+					]
+				},
+				"description": "Este endpoint permite crear usuarios."
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarUsuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwOTY0MywiZXhwIjoxNzM0ODk2MDQzfQ.wiczL75TFJp0TxOS2GCJ8sTBEgb1rdayN21Kj7-Rrqw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idUsuario\": 20,\r\n    \"rol_idRol\": 2,\r\n    \"estados_idEstados\": 1,\r\n    \"correoElectronico\": \"Prueba66@empresa.com\",\r\n    \"nombreCompleto\": \"Prueba662 prueba662\",\r\n    \"passwrd\": \"prueba123\",\r\n    \"direccion\": \"avenida 666\",\r\n    \"telefono\": \"123456789\",\r\n    \"fechaNacimiento\": \"1985-06-07\",\r\n    \"Clientes_idClientes\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/usuarios/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"usuarios",
+						"update"
+					]
+				},
+				"description": "Este endpoint permite actualizar usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "DesactivarUsuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwOTY0MywiZXhwIjoxNzM0ODk2MDQzfQ.wiczL75TFJp0TxOS2GCJ8sTBEgb1rdayN21Kj7-Rrqw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"usuarios",
+						"1"
+					]
+				},
+				"description": "Este enpoint permite desactivar usuarios mandando como parametro su id."
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwOTI3MCwiZXhwIjoxNzM0ODk1NjcwfQ.bsYOByyu4xiCLeyq2d2RtMFwrRkK1pHDAksPHdV6CzM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correoElectronico\": \"admin@admin.com\",\r\n    \"passwrd\": \"adminpassword\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				},
+				"description": "Endpoint que nos permite iniciar sesion en el sistema usando el correo electronico y la contraseña. por defecto se ha creado un admin para poder acceder a todos los endpoins en el sistema, al momento de iniciar la sesion no devolvera un token el cual tendremos que usar para acceder a los demas endpoins.\n\n{  \n\"correoElectronico\": \"[admin@admin.com](https://mailto:admin@admin.com)\",  \n\"passwrd\": \"adminpassword\"\n\n}"
+			},
+			"response": []
+		}
+	]
+}

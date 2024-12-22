@@ -1,6 +1,7 @@
 const UsuariosService = require('../services/usuariosService.js');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const response = require('../utils/response.js');
 
 class authController {
 
@@ -22,7 +23,8 @@ class authController {
     
             //para que el token dure 24h
             const token = jwt.sign({ id: user.idUsuario }, process.env.JWT_SECRET, { expiresIn: '24h' });
-            res.json({ token });
+            response.success(res, 'Login correcto', { token }, 200);
+            //res.json({ token });
         } catch (error) {
             console.error('Internal server error:', error);
             res.status(500).json({ error: 'Internal server error' });
