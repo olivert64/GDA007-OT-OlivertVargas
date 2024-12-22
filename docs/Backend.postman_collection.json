@@ -1,0 +1,1029 @@
+{
+	"info": {
+		"_postman_id": "ec2864b2-f853-47e5-889d-78c8439ddfb1",
+		"name": "Backend",
+		"description": "Esta api permite gestionar Usuarios, Clientes, Productos, Categorias, Ordenes y Estados. Utiliza los siguientes endpoints para interactuar con el sistema.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9272212"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"token\", jsonResponse.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correoElectronico\": \"admin1@empresa.com\",\r\n    \"passwrd\": \"admin\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/auth/login",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Endpoint que nos permite iniciar sesion en el sistema usando el correo electronico y la contraseña. por defecto se ha creado un admin para poder acceder a todos los endpoins en el sistema, al momento de iniciar la sesion no devolvera un token el cual tendremos que usar para acceder a los demas endpoins.\n\n{\n\n\"correoElectronico\": \"[admin1@empresa.com](https://mailto:admin1@empresa.com)\",\n\n\"passwrd\": \"admin\"  \n}"
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerUsuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/usuarios/get",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"usuarios",
+								"get"
+							]
+						},
+						"description": "Este endpoint permite obtener todos los usuarios."
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/usuarios/get/1",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"usuarios",
+								"get",
+								"1"
+							]
+						},
+						"description": "Este endpoint permite obtener un usuario mandando como parametro su id."
+					},
+					"response": []
+				},
+				{
+					"name": "CrearUsuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rol_idRol\": 2,\r\n    \"correoElectronico\": \"Prueba66sss6@empresa.com\",\r\n    \"nombreCompleto\": \"Prueba662 prueba662\",\r\n    \"passwrd\": \"prueba12334\",\r\n    \"direccion\": \"avenida 1\",\r\n    \"telefono\": \"123456789\",\r\n    \"fechaNacimiento\": \"1985-06-14\",\r\n    \"Clientes_idClientes\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/usuarios/insert",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"usuarios",
+								"insert"
+							]
+						},
+						"description": "Este endpoint permite crear usuarios."
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarUsuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\": 20,\r\n    \"rol_idRol\": 2,\r\n    \"estados_idEstados\": 1,\r\n    \"correoElectronico\": \"Prueba66@empresa.com\",\r\n    \"nombreCompleto\": \"Prueba662 prueba662\",\r\n    \"passwrd\": \"prueba123\",\r\n    \"direccion\": \"avenida 666\",\r\n    \"telefono\": \"123456789\",\r\n    \"fechaNacimiento\": \"1985-06-07\",\r\n    \"Clientes_idClientes\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/usuarios/update",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"usuarios",
+								"update"
+							]
+						},
+						"description": "Este endpoint permite actualizar usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "DesactivarUsuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/usuarios/1",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"usuarios",
+								"1"
+							]
+						},
+						"description": "Este enpoint permite desactivar usuarios mandando como parametro su id."
+					},
+					"response": []
+				}
+			],
+			"description": "Los endpoints de usuarios permiten hacer login, crear, actualizar, desactivar y obtener información sobre los usuarios registrados."
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "ObtenerClientes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/clientes/get",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"clientes",
+								"get"
+							]
+						},
+						"description": "Enpoint que nos permite listar todos los usuarios."
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/clientes/get/2",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"clientes",
+								"get",
+								"2"
+							]
+						},
+						"description": "Endpoint que nos permite obtener un usuario ingresando como parametro su id."
+					},
+					"response": []
+				},
+				{
+					"name": "CrearCliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"razonSocial\": \"pruebas S.A.\",\r\n    \"nombreComercial\": \"Prueba\",\r\n    \"direccionEntrega\": \"Avenida la pruebaa\",\r\n    \"telefono\": \"666666666\",\r\n    \"email\": \"pruebaaaaaa@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/clientes/insert",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"clientes",
+								"insert"
+							]
+						},
+						"description": "Endpoint que nos permite crear un cliente con los parametros correspondientes."
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarCliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": 20,\r\n    \"razonSocial\": \"pruebas S.A.\",\r\n    \"nombreComercial\": \"Pruebaaa\",\r\n    \"direccionEntrega\": \"Avenida la pruebaa\",\r\n    \"telefono\": \"666666666\",\r\n    \"email\": \"pruebaaaaaa@gmail.com\",\r\n    \"estados_idEstados\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/clientes/update",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"clientes",
+								"update"
+							]
+						},
+						"description": "Endpoint que nos permite actualizar un cliente con los parametros correspondientes."
+					},
+					"response": []
+				},
+				{
+					"name": "DesactivarCliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/clientes/delete/20",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"clientes",
+								"delete",
+								"20"
+							]
+						},
+						"description": "Endpoint que nos permite desactivar un cliente mandando como parametro su id."
+					},
+					"response": []
+				}
+			],
+			"description": "Los endpoints de clientes permiten crear, actualizar, desactivar y obtener información sobre los clientes registrados."
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "ObtenerProductos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/productos/get",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"get"
+							]
+						},
+						"description": "Este endpoint permite obtener todos los productos."
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/productos/get/11",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"get",
+								"11"
+							]
+						},
+						"description": "Este endpoint permite obtener un producto mandando como parametro su id."
+					},
+					"response": []
+				},
+				{
+					"name": "CrearProducto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"CategoriaProductos_idCategoriaProductos\": 2,\r\n  \"usuarios_idUsuarios\": 3,\r\n  \"nombre\": \"Producto Nuevo\",\r\n  \"marca\": \"Marca Prueba\",\r\n  \"codigo\": \"COD666\",\r\n  \"cantidad\": 85,\r\n  \"precio\": 299.99,\r\n  \"fotoUrl\": \"https://pagina.com/imagen.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/productos/insert",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"insert"
+							]
+						},
+						"description": "Este endpoint permite crear un producto."
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarProductos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"idProducto\": 1,\r\n    \"CategoriaProductos_idCategoriaProductos\": 1,\r\n    \"usuarios_idUsuarios\": 1,\r\n    \"nombre\": \"Smartphone X100\",\r\n    \"marca\": \"TechBrand\",\r\n    \"codigo\": \"X100001\",\r\n    \"cantidad\": 50,\r\n    \"estados_idEstados\": 1,\r\n    \"precio\": 599.99,\r\n    \"fotoUrl\": \"http://example.com/smartphone_x100.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/productos/update",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"update"
+							]
+						},
+						"description": "Este endpoint permite actualizar un producto."
+					},
+					"response": []
+				},
+				{
+					"name": "DesactivarProducto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/productos/delete/1",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"delete",
+								"1"
+							]
+						},
+						"description": "Este endpoint permite desactivar un producto mandando como parametro su id."
+					},
+					"response": []
+				}
+			],
+			"description": "Los endpoints de productos permiten crear, actualizar, desactivar y obtener información sobre los p;roductos registrados."
+		},
+		{
+			"name": "CategoriaProductos",
+			"item": [
+				{
+					"name": "ListaCategoriaProductos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/categoriaProductos/get",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"categoriaProductos",
+								"get"
+							]
+						},
+						"description": "Obtiene una lista de todas las categorias almacenadas en el sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/categoriaProductos/get/1",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"categoriaProductos",
+								"get",
+								"1"
+							]
+						},
+						"description": "Obtiene una categoria en el sistema por medio de su Id."
+					},
+					"response": []
+				},
+				{
+					"name": "CrearCategoriaProductos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario_idUsuarios\": 1,\r\n    \"nombre\": \"Productos para el hogar en el bosque\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/categoriaProductos/insert",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"categoriaProductos",
+								"insert"
+							]
+						},
+						"description": "Este enpoint permite insertar una nueva categoria de productos."
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarCategoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"idCategoriaProducto\": 11,\r\n        \"usuario_idUsuarios\": 1,\r\n        \"nombre\": \"Productos para la oficina\",\r\n        \"estados_idEstados\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/categoriaProductos/update",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"categoriaProductos",
+								"update"
+							]
+						},
+						"description": "Este endopoint perminte actualizar una categoria de porductos."
+					},
+					"response": []
+				},
+				{
+					"name": "DesactivarCategoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/categoriaProductos/delete/10",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"categoriaProductos",
+								"delete",
+								"10"
+							]
+						},
+						"description": "Este endpoint nos permite descativar una categoria de productos."
+					},
+					"response": []
+				}
+			],
+			"description": "Los endpoints de categoriaProductos permiten crear, actualizar, desactivar y obtener información sobre las categoriaProductos registradas."
+		},
+		{
+			"name": "Orden",
+			"item": [
+				{
+					"name": "ObtenerOrdenes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/orden/get",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"orden",
+								"get"
+							]
+						},
+						"description": "Este endpoint permite obtener las ordenes."
+					},
+					"response": []
+				},
+				{
+					"name": "InsertarOrden",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuarios_idUsuarios\": 3,\r\n    \"detalles\": [\r\n        {\r\n            \"Productos_idProductos\": 1,\r\n            \"cantidad\": 2,\r\n            \"precio\": 26,\r\n            \"subtotal\": 52.00\r\n        },\r\n        {\r\n            \"Productos_idProductos\": 2,\r\n            \"cantidad\": 3,\r\n            \"precio\": 400.00,\r\n            \"subtotal\": 1200.00\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/orden/insert",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"orden",
+								"insert"
+							]
+						},
+						"description": "Este endpoint permite crear una orden con sus detalles."
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarOrden",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOrden\":1,\r\n    \"estados_idEstados\": 1,\r\n    \"nombreCompleto\":\"Juan Pérez Perez\",\r\n    \"direccion\": \"Calle Principal 123\",\r\n    \"telefono\": \"3001234567\",\r\n    \"correoElectronico\": \"juan.perez@example.com\",\r\n    \"fechaEntregaEstimada\": \"2024-12-10\",\r\n    \"fechaEntregado\": \"2024-12-23\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/orden/update",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"orden",
+								"update"
+							]
+						},
+						"description": "Este endpoint permite actualizar los datos de una orden."
+					},
+					"response": []
+				}
+			],
+			"description": "Los endpoints de las ordenes permiten crear, actualizar y obtener información sobre las ordenes registrados."
+		},
+		{
+			"name": "Estados",
+			"item": [
+				{
+					"name": "ObtenerEstados",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/estados/get",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"estados",
+								"get"
+							]
+						},
+						"description": "Este endpoint permite obtener todos los estados en el sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/api/estados/get/3",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"estados",
+								"get",
+								"3"
+							]
+						},
+						"description": "Este endpoint perminte obtener un estado mandando como parametro su id."
+					},
+					"response": []
+				},
+				{
+					"name": "CrearEstado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Probando\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/estados/insert",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"estados",
+								"insert"
+							]
+						},
+						"description": "Este endopoint permite crear un estado."
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizerEstado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEstado\": 8,\r\n    \"nombre\": \"Probando5\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/api/estados/update",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"api",
+								"estados",
+								"update"
+							]
+						},
+						"description": "Este endpoint permite actualizar un estado."
+					},
+					"response": []
+				}
+			],
+			"description": "Los endpoints de estados permiten crear, actualizar y obtener información sobre los estados registrados."
+		}
+	]
+}

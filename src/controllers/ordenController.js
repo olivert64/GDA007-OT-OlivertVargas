@@ -37,7 +37,7 @@ class OrdenController {
         try {
             const ordenes = await OrdenService.getOrdenes();
             response.success(res, 'Ordenes encontradas', ordenes, 200);
-            return res.status(200).json(ordenes);
+            //return res.status(200).json(ordenes);
         } catch (error) {
             console.error('Error al obtener las ordenes:', error);
             return res.status(500).json({ error: 'Error al obtener las ordenes.' });
