@@ -1385,7 +1385,6 @@ BEGIN
 		estados_idEstados,
 		correoElectronico,
 		nombreCompleto,
-		passwrd,
 		direccion,
 		telefono,
 		fechaNacimiento,
