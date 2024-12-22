@@ -1,5 +1,6 @@
 const { Model } = require('sequelize');
 const categoriaProductosService = require('../services/categoriaProductosService.js');
+const response = require('../utils/response.js');
 
 class ProductosController {
 
@@ -8,20 +9,10 @@ class ProductosController {
 
             const data = req.body;
 
-            const camposRequeridos = [
-                'usuario_idUsuarios',
-                'nombre',
-                'estados_idEstados',
-            ];
-
-            for (const campo of camposRequeridos) {
-                if (!data[campo]) {
-                    return res.status(400).json({ error: `El campo ${campo} es obligatorio.` });
-                }
-            }
-
-            await categoriaProductosService.insertCategoriaProductos(data);
-            return res.status(201).json({ message: 'Categoria producto creado Correctamente.' });
+            const result = await categoriaProductosService.insertCategoriaProductos(data);
+            
+            response.success(res, 'Categoria producto creado Correctamente', result, 201);
+            //return res.status(201).json({ message: 'Categoria producto creado Correctamente.' });
 
         } catch (error) {
             console.log(error);
@@ -34,13 +25,10 @@ class ProductosController {
         try {
             const data = req.body;
 
-            if (!data.idCategoriaProducto) {
-                return res.status(400).json({ error: 'El ID de la categoria producto es obligatorio.' });
-            }
+            const result = await categoriaProductosService.updateCategoriaProductos(data);
+            response.success(res, 'Categoria producto actualizado correctamente', result, 200);
 
-            await categoriaProductosService.updateCategoriaProductos(data);
-
-            return res.status(200).json({ message: 'Categoria producto actualizado correctamente' });
+            //return res.status(200).json({ message: 'Categoria producto actualizado correctamente' });
 
         } catch (error) {
             console.log(error);
@@ -50,15 +38,13 @@ class ProductosController {
 
     static async delete(req, res) {
         try {
-            const idCategoriaProducto = req.params.idCategoriaProducto;
+            const idCategoriaProducto = req.params.id;
 
-            if (!idCategoriaProducto) {
-                return res.status(400).json({ error: 'El ID de la categoria producto es obligatorio.' });
-            }
+            const result = await categoriaProductosService.deleteCategoriaProductos(idCategoriaProducto);
 
-            await categoriaProductosService.deleteCategoriaProductos(idCategoriaProducto);
+            response.success(res, 'Categoria producto desactivado correctamente', result, 200);
 
-            return res.status(200).json({ message: 'Categoria producto desactivado correctamente' });
+            //return res.status(200).json({ message: 'Categoria producto desactivado correctamente' });
 
         } catch (error) {
             console.log(error);
@@ -69,7 +55,8 @@ class ProductosController {
     static async get(req, res) {
         try {
             const data = await categoriaProductosService.getCategoriaProductos();
-            return res.status(200).json(data);
+            response.success(res, 'Categoria producto encontrada', data, 200);
+            //return res.status(200).json(data);
         } catch (error) {
             console.log(error);
             return res.status(500).json({ error: 'Error al consultar datos' });
@@ -78,15 +65,11 @@ class ProductosController {
 
     static async getById(req, res) {
         try {
-            const idCategoriaProducto = req.params.idCategoriaProducto;
-
-            if (!idCategoriaProducto) {
-                return res.status(400).json({ error: 'El ID de la categoria producto es obligatorio.' });
-            }
+            const idCategoriaProducto = req.params.id;
 
             const data = await categoriaProductosService.getCategoriaProductosById(idCategoriaProducto);
-
-            return res.status(200).json(data);
+            response.success(res, 'Categoria producto encontrada', data, 200);
+            //return res.status(200).json(data);
 
         } catch (error) {
             console.log(error);

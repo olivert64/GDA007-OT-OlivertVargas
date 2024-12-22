@@ -7,14 +7,12 @@ class CategoriaProductosService {
     static async insertCategoriaProductos(data) {
         const query = `EXEC p_insertarCategoriaProductos
             @usuario_idUsuarios = :usuario_idUsuarios,
-            @nombre = :nombre,
-            @estados_idEstados= :estados_idEstados`;
+            @nombre = :nombre;`;
 
         return await sequelize.query(query, {
             replacements: {
                 usuario_idUsuarios: data.usuario_idUsuarios,
                 nombre: data.nombre,
-                estados_idEstados: data.estados_idEstados,
             },
             type: sequelize.QueryTypes.INSERT
         });

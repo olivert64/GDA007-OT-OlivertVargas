@@ -12,7 +12,6 @@ class ProductosService {
             @marca = :marca,
             @codigo = :codigo,
             @cantidad = :cantidad,
-            @estados_idEstados = :estados_idEstados,
             @precio = :precio,
             @fotoUrl = :fotoUrl`;
 
@@ -24,21 +23,10 @@ class ProductosService {
                 marca: data.marca,
                 codigo: data.codigo,
                 cantidad: data.cantidad,
-                estados_idEstados: data.estados_idEstados,
                 precio: data.precio,
                 fotoUrl: data.fotoUrl || null,
             },
             type: sequelize.QueryTypes.INSERT
-        });
-
-    }
-
-    //desactivar productos
-    static async deleteProductos(id) {
-        const query = `EXEC p_eliminarProductos @idProducto = :idProducto`;
-        return await sequelize.query(query, {
-            replacements: { idProducto: id },
-            type: sequelize.QueryTypes.UPDATE
         });
 
     }
@@ -73,6 +61,16 @@ class ProductosService {
             },
             type: sequelize.QueryTypes.UPDATE,
         });
+    }
+
+    //desactivar productos
+    static async deleteProductos(id) {
+        const query = `EXEC p_eliminarProductos @idProducto = :idProducto`;
+        return await sequelize.query(query, {
+            replacements: { idProducto: id },
+            type: sequelize.QueryTypes.UPDATE
+        });
+
     }
 
     //obtener lista de productos

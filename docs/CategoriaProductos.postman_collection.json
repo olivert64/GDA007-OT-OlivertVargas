@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "b5e65ad8-479b-4839-a5c7-04e3bc1b33c8",
+		"name": "CategoriaProductos",
+		"description": "Los endpoints de Categorias de productos permiten crear, actualizar, eliminar y obtener información sobre los categorias registradas.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9272212"
+	},
+	"item": [
+		{
+			"name": "ListaCategoriaProductos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/categoriaProductos/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"categoriaProductos",
+						"get"
+					]
+				},
+				"description": "Obtiene una lista de todas las categorias almacenadas en el sistema."
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerPorId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/categoriaProductos/get/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"categoriaProductos",
+						"get",
+						"1"
+					]
+				},
+				"description": "Obtiene una categoria en el sistema por medio de su Id."
+			},
+			"response": []
+		},
+		{
+			"name": "CrearCategoriaProductos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario_idUsuarios\": 1,\r\n    \"nombre\": \"Productos para el hogar en el bosque\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/categoriaProductos/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"categoriaProductos",
+						"insert"
+					]
+				},
+				"description": "Este enpoint permite insertar una nueva categoria de productos."
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarCategoria",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"idCategoriaProducto\": 11,\r\n        \"usuario_idUsuarios\": 1,\r\n        \"nombre\": \"Productos para la oficina\",\r\n        \"estados_idEstados\": 1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/categoriaProductos/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"categoriaProductos",
+						"update"
+					]
+				},
+				"description": "Este endopoint perminte actualizar una categoria de porductos."
+			},
+			"response": []
+		},
+		{
+			"name": "DesactivarCategoria",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/categoriaProductos/delete/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"categoriaProductos",
+						"delete",
+						"10"
+					]
+				},
+				"description": "Este endpoint nos permite descativar una categoria de productos."
+			},
+			"response": []
+		}
+	]
+}

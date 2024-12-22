@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "094ae5e2-2ab1-45a9-bdd7-fc3271f2fdaf",
+		"name": "Orden",
+		"description": "Los endpoints de orden/detalles permiten crear, actualizar y obtener información sobre las ordenes registradas.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9272212"
+	},
+	"item": [
+		{
+			"name": "ObtenerOrdenes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orden/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orden",
+						"get"
+					]
+				},
+				"description": "Este endpoint permite obtener las ordenes."
+			},
+			"response": []
+		},
+		{
+			"name": "InsertarOrden",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuarios_idUsuarios\": 3,\r\n    \"detalles\": [\r\n        {\r\n            \"Productos_idProductos\": 1,\r\n            \"cantidad\": 2,\r\n            \"precio\": 26,\r\n            \"subtotal\": 52.00\r\n        },\r\n        {\r\n            \"Productos_idProductos\": 2,\r\n            \"cantidad\": 3,\r\n            \"precio\": 400.00,\r\n            \"subtotal\": 1200.00\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/orden/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orden",
+						"insert"
+					]
+				},
+				"description": "Este endpoint permite crear una orden con sus detalles."
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarOrden",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTczNDgwNzYxNCwiZXhwIjoxNzM0ODk0MDE0fQ.JGg9uRMO0Hnf4P6eCzT8W-2CJ872G_abtKGvVSBaBLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idOrden\":1,\r\n    \"estados_idEstados\": 1,\r\n    \"nombreCompleto\":\"Juan Pérez Perez\",\r\n    \"direccion\": \"Calle Principal 123\",\r\n    \"telefono\": \"3001234567\",\r\n    \"correoElectronico\": \"juan.perez@example.com\",\r\n    \"fechaEntregaEstimada\": \"2024-12-10\",\r\n    \"fechaEntregado\": \"2024-12-23\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/orden/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orden",
+						"update"
+					]
+				},
+				"description": "Este endpoint permite actualizar los datos de una orden."
+			},
+			"response": []
+		}
+	]
+}
