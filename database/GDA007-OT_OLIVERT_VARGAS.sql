@@ -1,5 +1,5 @@
 create database  GDA007_OT_Olivert_Vargas;
-go
+GO
 
 use GDA007_OT_Olivert_Vargas;
 go
@@ -203,7 +203,7 @@ EXEC p_insertarClientes
 EXEC p_insertarClientes 
     @razonSocial = 'Tech Solutions S.A.',
     @nombreComercial = 'TechSol',
-    @direccionEntrega = 'Avenida Innovación 45, Ciudad',
+    @direccionEntrega = 'Avenida Innovaciï¿½n 45, Ciudad',
     @telefono = '987654321',
     @Email = 'contacto@techsol.com';
 
@@ -231,7 +231,7 @@ EXEC p_insertarClientes
 EXEC p_insertarClientes 
     @razonSocial = 'Electro Hogar S.A.',
     @nombreComercial = 'ElectroHogar',
-    @direccionEntrega = 'Avenida de los Electrodomésticos 14, Barrio Z',
+    @direccionEntrega = 'Avenida de los Electrodomï¿½sticos 14, Barrio Z',
     @telefono = '789123456',
     @Email = 'atencion@electrohogar.com';
 GO
@@ -291,7 +291,7 @@ GO
 EXEC p_insertarUsuarios
     @rol_idRol = 1, 
     @correoElectronico = 'admin1@empresa.com',
-    @nombreCompleto = 'Juan Pérez',
+    @nombreCompleto = 'Juan Pï¿½rez',
     @passwrd = 'admin123',
 	@direccion = 'avenida 2',
     @telefono = '123456789',
@@ -301,7 +301,7 @@ EXEC p_insertarUsuarios
 EXEC p_insertarUsuarios
     @rol_idRol = 2, 
     @correoElectronico = 'operador1@empresa.com',
-    @nombreCompleto = 'María Gómez',
+    @nombreCompleto = 'Marï¿½a Gï¿½mez',
     @passwrd = 'operador456',
 	@direccion = 'direccion 1 avenida 2',
     @telefono = '987654321',
@@ -311,7 +311,7 @@ EXEC p_insertarUsuarios
 EXEC p_insertarUsuarios
     @rol_idRol = 3, 
     @correoElectronico = 'cliente1@empresa.com',
-    @nombreCompleto = 'Carlos Méndez',
+    @nombreCompleto = 'Carlos Mï¿½ndez',
     @passwrd = 'cliente789',
 	@direccion = 'direccion 2 avenida 3',
     @telefono = '321654987',
@@ -341,7 +341,7 @@ EXEC p_insertarUsuarios
 EXEC p_insertarUsuarios
     @rol_idRol = 2, 
     @correoElectronico = 'operador3@empresa.com',
-    @nombreCompleto = 'Sara Lopéz',
+    @nombreCompleto = 'Sara Lopï¿½z',
     @passwrd = 'op790',
 	@direccion = 'direccion 11 avenida 22',
     @telefono = '54788965',
@@ -379,7 +379,7 @@ GO
 
 EXEC p_insertarCategoriaProductos
     @usuario_idUsuarios = 1, 
-    @nombre = 'Electrodomésticos'; 
+    @nombre = 'Electrodomï¿½sticos'; 
 
 EXEC p_insertarCategoriaProductos
     @usuario_idUsuarios = 2, 
@@ -391,7 +391,7 @@ EXEC p_insertarCategoriaProductos
 
 EXEC p_insertarCategoriaProductos
     @usuario_idUsuarios = 4,
-    @nombre = 'Tecnología';
+    @nombre = 'Tecnologï¿½a';
 
 EXEC p_insertarCategoriaProductos
     @usuario_idUsuarios = 1,
@@ -399,11 +399,11 @@ EXEC p_insertarCategoriaProductos
 
 EXEC p_insertarCategoriaProductos
     @usuario_idUsuarios = 2,
-    @nombre = 'Muebles y Decoración'; 
+    @nombre = 'Muebles y Decoraciï¿½n'; 
 
 EXEC p_insertarCategoriaProductos
     @usuario_idUsuarios = 3, 
-    @nombre = 'Hogar y Jardín'; 
+    @nombre = 'Hogar y Jardï¿½n'; 
 
 EXEC p_insertarCategoriaProductos
     @usuario_idUsuarios = 4, 
@@ -443,7 +443,7 @@ GO
 --EXEC p_insertarOrden 
 --    @usuarios_idUsuarios = 1,
 --    @estados_idEstados = 1, 
---    @nombreCompleto = 'Juan Pérez',
+--    @nombreCompleto = 'Juan Pï¿½rez',
 --    @direccion = 'Calle Principal 123',
 --    @telefono = '3001234567',
 --    @correoElectronico = 'juan.perez@example.com',
@@ -454,7 +454,7 @@ GO
 --EXEC p_insertarOrden 
 --    @usuarios_idUsuarios = 2,
 --    @estados_idEstados = 1, 
---    @nombreCompleto = 'María Gómez',
+--    @nombreCompleto = 'Marï¿½a Gï¿½mez',
 --    @direccion = 'Avenida Central 45',
 --    @telefono = '3109876543',
 --    @correoElectronico = 'maria.gomez@example.com',
@@ -465,7 +465,7 @@ GO
 --EXEC p_insertarOrden 
 --    @usuarios_idUsuarios = 3, 
 --    @estados_idEstados = 3, 
---    @nombreCompleto = 'Carlos Martínez',
+--    @nombreCompleto = 'Carlos Martï¿½nez',
 --    @direccion = 'Calle Comercio 789',
 --    @telefono = '3201122334',
 --    @correoElectronico = 'carlos.martinez@example.com',
@@ -476,7 +476,7 @@ GO
 --EXEC p_insertarOrden 
 --    @usuarios_idUsuarios = 4, 
 --    @estados_idEstados = 2, 
---    @nombreCompleto = 'Laura Hernández',
+--    @nombreCompleto = 'Laura Hernï¿½ndez',
 --    @direccion = 'Pasaje Los Almendros 32',
 --    @telefono = '3052233445',
 --    @correoElectronico = 'laura.hernandez@example.com',
@@ -487,7 +487,7 @@ GO
 --EXEC p_insertarOrden 
 --    @usuarios_idUsuarios = 16, 
 --    @estados_idEstados = 1, 
---    @nombreCompleto = 'Sara Lopéz',
+--    @nombreCompleto = 'Sara Lopï¿½z',
 --    @direccion = 'Avenida las Americas 32',
 --    @telefono = '54788965',
 --    @correoElectronico = 'sara.lopez33@example.com',
@@ -498,7 +498,7 @@ GO
 --EXEC p_insertarOrden 
 --    @usuarios_idUsuarios = 6, 
 --    @estados_idEstados = 1, 
---    @nombreCompleto = 'Sara Lopéz',
+--    @nombreCompleto = 'Sara Lopï¿½z',
 --    @direccion = 'Avenida las Americas 32',
 --    @telefono = '54788965',
 --    @correoElectronico = 'sara.lopez33@example.com',
@@ -510,7 +510,7 @@ GO
 --EXEC p_insertarOrden 
 --    @usuarios_idUsuarios = 7, 
 --    @estados_idEstados = 1, 
---    @nombreCompleto = 'Sara Lopéz',
+--    @nombreCompleto = 'Sara Lopï¿½z',
 --    @direccion = 'Avenida las Americas 32',
 --    @telefono = '54788965',
 --    @correoElectronico = 'sara.lopez33@example.com',
@@ -521,7 +521,7 @@ GO
 --EXEC p_insertarOrden 
 --    @usuarios_idUsuarios = 6, 
 --    @estados_idEstados = 1, 
---    @nombreCompleto = 'Sara Lopéz',
+--    @nombreCompleto = 'Sara Lopï¿½z',
 --    @direccion = 'Avenida las Americas 32',
 --    @telefono = '54788965',
 --    @correoElectronico = 'sara.lopez33@example.com',
@@ -592,7 +592,7 @@ EXEC p_insertarProductos
     @CategoriaProductos_idCategoriaProductos = 2, 
     @usuarios_idUsuarios = 3,
     @nombre = 'Camiseta Estilo X',
-    @marca = 'ModaRápida',
+    @marca = 'ModaRï¿½pida',
     @codigo = 'MRC1001',
     @cantidad = 100, 
     @precio = 19.99,
@@ -601,8 +601,8 @@ EXEC p_insertarProductos
 EXEC p_insertarProductos 
     @CategoriaProductos_idCategoriaProductos = 2, 
     @usuarios_idUsuarios = 4, 
-    @nombre = 'Pantalón Azul Clásico',
-    @marca = 'ModaRápida',
+    @nombre = 'Pantalï¿½n Azul Clï¿½sico',
+    @marca = 'ModaRï¿½pida',
     @codigo = 'MRC1002',
     @cantidad = 80,
     @precio = 29.99,
@@ -651,7 +651,7 @@ EXEC p_insertarProductos
 EXEC p_insertarProductos 
     @CategoriaProductos_idCategoriaProductos = 5, 
     @usuarios_idUsuarios = 4, 
-    @nombre = 'Muñeca Bella',
+    @nombre = 'Muï¿½eca Bella',
     @marca = 'JuguetesMagia',
     @codigo = 'JM001',
     @cantidad = 150,
@@ -681,7 +681,7 @@ EXEC p_insertarProductos
 EXEC p_insertarProductos 
     @CategoriaProductos_idCategoriaProductos = 6, 
     @usuarios_idUsuarios = 2, 
-    @nombre = 'Cargador Rápido',
+    @nombre = 'Cargador Rï¿½pido',
     @marca = 'PowerTech',
     @codigo = 'PT001',
     @cantidad = 200,
@@ -691,7 +691,7 @@ EXEC p_insertarProductos
 EXEC p_insertarProductos 
     @CategoriaProductos_idCategoriaProductos = 7,
     @usuarios_idUsuarios = 3, 
-    @nombre = 'Balón de Fútbol',
+    @nombre = 'Balï¿½n de Fï¿½tbol',
     @marca = 'DeporteMax',
     @codigo = 'DF001',
     @cantidad = 60, 
@@ -936,7 +936,7 @@ EXEC p_editarOrden
     @idOrden = 1,
 	--@usuarios_idUsuarios = 1,
 	@estados_idEstados = 1,
-	@nombreCompleto = 'Juan Pérez',
+	@nombreCompleto = 'Juan Pï¿½rez',
 	@direccion = 'Calle Principal 123',
 	@telefono = '3001234567',
 	@correoElectronico = 'juan.perez@example.com',
@@ -1092,7 +1092,7 @@ GO
 --GO
 
 
---c. Top 10 de clientes con Mayor consumo de ordenes de todo el histórico
+--c. Top 10 de clientes con Mayor consumo de ordenes de todo el histï¿½rico
 CREATE VIEW topClientesPorConsumo
 AS
 	SELECT TOP 10 
@@ -1111,7 +1111,7 @@ GO
 --GO
 
 
---d. Top 10 de productos más vendidos en orden ascendente
+--d. Top 10 de productos mï¿½s vendidos en orden ascendente
 CREATE VIEW topProductosMasVendidos
 AS
 	SELECT TOP 10
