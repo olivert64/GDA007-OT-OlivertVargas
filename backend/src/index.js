@@ -28,14 +28,13 @@ sequelize.authenticate()
 //Rutas
 app.get('/', (req, res) => { res.send('API funcionando') });
 app.use('/api/auth', authRoutes);
-app.use('/api/productos', authenticateToken, productosRoutes);
-app.use('/api/categoriaProductos', authenticateToken, categoriaProductosRoutes);
-app.use('/api/estados', authenticateToken, estadosRoutes);
-app.use('/api/orden', authenticateToken, ordenRoutes);
-app.use('/api/usuarios', authenticateToken, usuariosRoutes);
-app.use('/api/clientes', authenticateToken, clientesRoutes);
+app.use('/api/productos', productosRoutes);
+app.use('/api/categoriaProductos', categoriaProductosRoutes);
+app.use('/api/estados', estadosRoutes);
+app.use('/api/orden', ordenRoutes);
+app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/clientes', clientesRoutes);
 app.use('/api/almacenamiento', express.static(path.join(__dirname, '../almacenamiento/imagenes')));
-
 
 
 

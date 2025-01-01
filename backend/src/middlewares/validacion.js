@@ -1,9 +1,9 @@
 const { validationResult } = require('express-validator');
 
-// can be reused by many routes
+// Middleware para validar campos
 const validarCampos = validations => {
     return async (req, res, next) => {
-        // sequential processing, stops running validations chain if one fails.
+        // procesamiento secuencial, detiene la ejecución de la cadena de validaciones si una falla.
         for (const validation of validations) {
             const result = await validation.run(req);
             if (!result.isEmpty()) {
