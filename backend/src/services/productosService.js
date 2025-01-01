@@ -1,10 +1,14 @@
 const sequelize = require('../config/database.js');
+const imageService = require('./almacenamientoService.js');
 
 
 class ProductosService {
 
     //insertar productos
     static async insertProductos(data) {
+
+        const imageUrl = await imageService.saveBase64Image(data.fotoBase64);
+
         const query = `EXEC p_insertarProductos
             @CategoriaProductos_idCategoriaProductos = :CategoriaProductos_idCategoriaProductos,
             @usuarios_idUsuarios = :usuarios_idUsuarios,
@@ -24,7 +28,7 @@ class ProductosService {
                 codigo: data.codigo,
                 cantidad: data.cantidad,
                 precio: data.precio,
-                fotoUrl: data.fotoUrl || null,
+                fotoUrl: imageUrl || null,
             },
             type: sequelize.QueryTypes.INSERT
         });

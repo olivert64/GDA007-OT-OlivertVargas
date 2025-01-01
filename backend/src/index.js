@@ -10,12 +10,12 @@ const clientesRoutes = require('./routes/clientesRoutes.js');
 
 const authRoutes = require('./routes/authRoutes.js');
 const authenticateToken = require('./middlewares/auth.js');
-
+const path = require('path');
 
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 //Prueba de conexion a la bd
 sequelize.authenticate()
@@ -34,6 +34,9 @@ app.use('/api/estados', authenticateToken, estadosRoutes);
 app.use('/api/orden', authenticateToken, ordenRoutes);
 app.use('/api/usuarios', authenticateToken, usuariosRoutes);
 app.use('/api/clientes', authenticateToken, clientesRoutes);
+app.use('/api/almacenamiento', express.static(path.join(__dirname, '../almacenamiento/imagenes')));
+
+
 
 
 //Puerto

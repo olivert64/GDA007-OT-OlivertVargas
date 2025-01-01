@@ -4,6 +4,7 @@ const response = require('../utils/response.js');
 class OrdenController {
     
     static async insert(req, res) {
+        console.log(req.user);
         try {
 
             const data = req.body;

@@ -4,6 +4,8 @@ const response = require('../utils/response.js');
 class ProductosController {
 
     static async insert(req, res) {
+
+        
         try {
 
             const data = req.body;

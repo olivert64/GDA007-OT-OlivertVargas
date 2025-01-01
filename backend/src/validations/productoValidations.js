@@ -22,9 +22,10 @@ const createProducto = [
     body('precio')
         .notEmpty().withMessage('El precio no puede estar vacio')
         .isFloat().withMessage('El precio debe ser un numero'),
-    body('fotoUrl')
+    body('fotoBase64')
         .optional()
         .isString().withMessage('La url de la foto debe ser un string')
+        .isBase64().withMessage('La url de la foto debe ser un base64')
 ];
 
 const updateProducto = [
@@ -55,9 +56,10 @@ const updateProducto = [
     body('precio')
         .notEmpty().withMessage('El precio no puede estar vacio')
         .isFloat().withMessage('El precio debe ser un numero'),
-    body('fotoUrl')
+    body('fotoBase64')
         .optional()
         .isString().withMessage('La url de la foto debe ser un string')
+        .isBase64().withMessage('La url de la foto debe ser un base64')
 ];
 
 const deleteProducto = [

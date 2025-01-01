@@ -1250,11 +1250,19 @@ CREATE OR ALTER PROCEDURE p_CrearOrdenConDetalle
     @detalles NVARCHAR(MAX)
 AS
 BEGIN
-	BEGIN TRANSACTION;
+	
 	BEGIN TRY
 
 		DECLARE @idOrden INT;
 		DECLARE @totalOrden INT = 0;
+
+		-- Validar que el usuario existe
+        IF NOT EXISTS (SELECT 1 FROM Usuarios WHERE idUsuario = @usuarios_idUsuarios)
+        BEGIN
+            THROW 50001, 'El usuario no existe.', 1;
+        END;
+
+	BEGIN TRANSACTION;
 
         INSERT INTO Orden (
             usuarios_idUsuarios,
@@ -1283,6 +1291,22 @@ BEGIN
 
 		SET @idOrden = SCOPE_IDENTITY();
 
+		-- Validar stock de los productos
+        IF EXISTS (
+            SELECT 1
+            FROM OPENJSON(@detalles)
+            WITH (
+                Productos_idProductos INT,
+                cantidad INT
+            ) AS detalles
+            INNER JOIN Productos AS p ON detalles.Productos_idProductos = p.idProducto
+            WHERE detalles.cantidad > p.cantidad
+        )
+        BEGIN
+            THROW 50002, 'Stock insuficiente para uno o más productos.', 1;
+        END;
+
+
 		INSERT INTO OrdenDetalles (
             Orden_idOrden,
             Productos_idProductos,
@@ -1304,6 +1328,17 @@ BEGIN
             precio FLOAT,
             subtotal FLOAT
         );
+
+		 -- Actualizar el stock de los productos
+        UPDATE p
+        SET p.cantidad = p.cantidad - detalles.cantidad
+        FROM Productos p
+        INNER JOIN OPENJSON(@detalles)
+        WITH (
+            Productos_idProductos INT,
+            cantidad INT
+        ) AS detalles ON p.idProducto = detalles.Productos_idProductos;
+
 
 		UPDATE Orden
 		SET totalOrden =(
