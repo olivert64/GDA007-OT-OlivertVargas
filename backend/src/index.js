@@ -12,10 +12,14 @@ const authRoutes = require('./routes/authRoutes.js');
 const authenticateToken = require('./middlewares/auth.js');
 const path = require('path');
 
+const cors = require('cors');
+
 
 const app = express();
 
 app.use(express.json({ limit: '10mb' }));
+
+app.use(cors());
 
 //Prueba de conexion a la bd
 sequelize.authenticate()

@@ -6,8 +6,8 @@ const createUsuarios = [
         .notEmpty().withMessage('El id de rol no puede estar vacio')
         .isInt().withMessage('El id de rol debe ser un numero')
         .custom(value => {
-            if (value !== roles.OPERADOR) {
-                throw new Error('El rol debe ser Operador corresponde al numero 2');
+            if (value !== roles.OPERADOR && value !== roles.CLIENTE) {
+                throw new Error('El rol debe ser Operador o Cliente');
             }
             return true;
         }),
@@ -45,8 +45,8 @@ const updateUsuarios = [
         .notEmpty().withMessage('El id de rol no puede estar vacio')
         .isInt().withMessage('El id de rol debe ser un numero')
         .custom(value => {
-            if (value !== roles.OPERADOR) {
-                throw new Error('El rol debe ser Operador corresponde al numero 2');
+            if (value !== roles.OPERADOR && value !== roles.CLIENTE) {
+                throw new Error('El rol debe ser Operador o Cliente');
             }
             return true;
         }),
