@@ -25,6 +25,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Chip,
 } from "@mui/material";
 import {
   Add as AddIcon,
@@ -45,7 +46,6 @@ import {
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
-  const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
@@ -62,9 +62,20 @@ const UserManagement = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [snackbar, setSnackbar] = useState({ open: false, message: "" });
 
+  const roles = [
+    { idRol: 2, nombreRol: "Operador" },
+    { idRol: 3, nombreRol: "Cliente" },
+  ];
+
+  const estados = [
+    { id: 1, nombre: "Activo" },
+    { id: 2, nombre: "Inactivo" },
+    { id: 3, nombre: "Pendiente" },
+  ];
+
   useEffect(() => {
     fetchUsers();
-    fetchRoles();
+   // fetchRoles();
   }, []);
 
   const fetchUsers = async () => {
@@ -82,13 +93,6 @@ const UserManagement = () => {
     }
   };
 
-  const fetchRoles = () => {
-    const predefinedRoles = [
-      { idRol: 2, nombreRol: "Operador" },
-      { idRol: 3, nombreRol: "Cliente" },
-    ];
-    setRoles(predefinedRoles);
-  };
 
   const handleOpenDialog = (
     user = {
@@ -146,7 +150,7 @@ const UserManagement = () => {
           ? dayjs(currentUser.fechaNacimiento).format("YYYY-MM-DD")
           : null,
       };
-      
+
       if (isEditing) {
         await actualizarUsuario(formattedUser);
       } else {
@@ -184,6 +188,25 @@ const UserManagement = () => {
         open: true,
         message: "Error al eliminar el usuario. Por favor, intente de nuevo.",
       });
+    }
+  };
+
+  const getStatusName = (statusId) => {
+    const status = estados.find((estado) => estado.id === statusId);
+    return status ? status.nombre : "Desconocido";
+  };
+
+  const getStatusColor = (statusId) => {
+    const statusName = getStatusName(statusId);
+    switch (statusName) {
+      case "Activo":
+        return "success";
+      case "Inactivo":
+        return "error";
+      case "Pendiente":
+        return "warning";
+      default:
+        return "default";
     }
   };
 
@@ -245,6 +268,13 @@ const UserManagement = () => {
                     ?.nombreRol || "N/A"}
                 </TableCell>
                 <TableCell>{user.telefono}</TableCell>
+                <TableCell>
+                  <Chip
+                    label={getStatusName(user.estados_idEstados)}
+                    color={getStatusColor(user.estados_idEstados)}
+                    size="small"
+                  />
+                </TableCell>
                 <TableCell>
                   <IconButton onClick={() => handleOpenDialog(user)}>
                     <EditIcon />
@@ -339,6 +369,22 @@ const UserManagement = () => {
               {roles.map((role) => (
                 <MenuItem key={role.idRol} value={role.idRol}>
                   {role.nombreRol}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth margin="dense">
+            <InputLabel id="estado-label">Estado</InputLabel>
+            <Select
+              labelId="estado-label"
+              name="estados_idEstados"
+              value={currentUser.estados_idEstados}
+              onChange={handleInputChange}
+              label="Estado"
+            >
+              {estados.map((estado) => (
+                <MenuItem key={estado.id} value={estado.id}>
+                  {estado.nombre}
                 </MenuItem>
               ))}
             </Select>

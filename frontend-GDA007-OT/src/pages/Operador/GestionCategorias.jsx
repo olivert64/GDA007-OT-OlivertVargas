@@ -22,6 +22,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Chip,
 } from "@mui/material";
 import {
   Add as AddIcon,
@@ -41,7 +42,7 @@ import { getEstado } from "../../services/estadoService";
 const CategoryManagement = () => {
   const [categories, setCategories] = useState([]);
   const [users, setUsers] = useState([]);
-  const [states, setStates] = useState([]);
+  const [estados, setEstados] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
@@ -94,7 +95,7 @@ const CategoryManagement = () => {
       const response = await getEstado();
 
       const data = await response.data;
-      setStates(data);
+      setEstados(data);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -135,12 +136,12 @@ const CategoryManagement = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (isEditing){
+      if (isEditing) {
         await actualizarCategoria(currentCategory);
       } else {
         await crearCategoria(currentCategory);
       }
-      
+
       await fetchCategories();
       handleCloseDialog();
       setSnackbar({
@@ -170,6 +171,25 @@ const CategoryManagement = () => {
         open: true,
         message: "Error al eliminar la categoría. Por favor, intente de nuevo.",
       });
+    }
+  };
+
+  const getStatusName = (statusId) => {
+    const status = estados.find((estado) => estado.idEstado === statusId);
+    return status ? status.nombre : "Desconocido";
+  };
+
+  const getStatusColor = (statusId) => {
+    const statusName = getStatusName(statusId);
+    switch (statusName) {
+      case "Activo":
+        return "success";
+      case "Inactivo":
+        return "error";
+      case "Pendiente":
+        return "warning";
+      default:
+        return "default";
     }
   };
 
@@ -217,9 +237,19 @@ const CategoryManagement = () => {
               <ListItem key={category.idCategoriaProducto} divider>
                 <ListItemText
                   primary={category.nombre}
-                  secondary={`Usuario ID: ${category.usuario_idUsuarios}, Estado ID: ${category.estados_idEstados}`}
+                  secondary={`Usuario: ${
+                    users.find(
+                      (user) => user.idUsuario === category.usuario_idUsuarios
+                    )?.nombreCompleto || "N/A"
+                  }`}
                 />
                 <ListItemSecondaryAction>
+                  <Chip
+                    label={getStatusName(category.estados_idEstados)}
+                    color={getStatusColor(category.estados_idEstados)}
+                    size="small"
+                    sx={{ mr: 1 }}
+                  />
                   <IconButton
                     edge="end"
                     aria-label="edit"
@@ -282,7 +312,7 @@ const CategoryManagement = () => {
               onChange={handleInputChange}
               label="Estado"
             >
-              {states.map((state) => (
+              {estados.map((state) => (
                 <MenuItem key={state.idEstado} value={state.idEstado}>
                   {state.nombre}
                 </MenuItem>
